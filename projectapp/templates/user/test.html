@@ -1,0 +1,75 @@
+{% extends 'user/layout.html' %}
+
+{% block content%}
+<form>
+<label>Name</label>
+<input type="text" name="username" id="username" class="form-control">
+<button class="btn btn-block btn-primary" onclick="" id="btn">check-availability</button>
+
+</form>
+<div class="row gx-4 gx-lg-5 align items center">
+<h3>state and LGA</h3>
+<label>select state</label>
+    {{ records }}
+<select name="allstate" id="allstate" class="form-control">
+    <option>please select</option>
+    {% for i in records %}
+    <option value="{{ i.state_id}}">{{ i.state_name}}</option>
+</select>
+{% endfor %}
+</div>
+<div id="lgas"></div>
+<script src="{{ url_for('static',filename='vendor/jquery/jquery.min.js')}}"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        var state = $(this).val()
+        $.ajax({
+            url:"",
+            data:"stateid="+state,
+            type:'GET',
+            dataType:'text',
+            success:function(m){
+                $('#lgas').html(m)
+            },
+            error:function(e){
+                console.log(e)
+            }
+
+        })
+
+
+
+
+
+        $('#btn').click(function(){
+        var username= $('#username').val()
+            $.ajax({
+                url:"{{ url_for('check_availability' )}}",
+                data:"user="+username,
+                dataType:"json",
+                type:"POST",
+                success:function(serverRsp){
+                    if (serverRsp == 'failed'){
+                        $('#feedback').addClass('alert-danger alert')
+                    }else{
+                        $('#feedback'),addClass('alert-success alert')
+                    }
+                    $('feedback').html(serverRsp.msg)
+                },
+                error:function(err){
+                    console.log(err)
+
+                },
+                beforeSend:function(){
+
+                }
+
+            })
+
+        })
+
+
+
+    })
+</script>
+{% endblock content%}

@@ -1,0 +1,90 @@
+{% extends 'user/layout.html' %}
+
+{% block content%}
+
+<!-- Page Content -->
+<div class="container">
+
+    <!-- Page Heading/Breadcrumbs -->
+    <h1 class="mt-4 mb-3 text-center" id="feedback">
+      <small>Login</small>
+    </h1>
+
+    
+
+    <div class="row" style='min-height:400px;'>
+      <div class="col-lg-8 col-md-8  offset-md-2 offset-lg-2 col-sm-12">
+        {% set m = get_flashed_messages() %}
+        {% if m: %}                        
+        {% for i in m: %}  
+        <p>{{ i }}</p> 
+        {% endfor %}   
+        {% endif %}
+         <form id="form">
+  <div class="form-group">
+    <label>firstname</label>
+    <input type="text" name="fname" class="form-control">
+    <label>lasttname</label>
+    <input type="text" name="lname" class="form-control">
+    <label for="exampleInputEmail1">Type Question</label>
+    <textarea  class="form-control" name='quest' id="quest"></textarea>
+     
+  </div>
+  <button type="submit" class="btn btn-info btn-block" id="btn">Send</button>
+</form>
+      </div>
+    
+     
+      
+     
+      
+    </div>
+
+    
+
+  </div>
+  <!-- /.container -->
+  <script src="{{ url_for('static',filename='vendor/jquery/jquery.min.js')}}"></script>
+  <script type="text/javascript">
+      $(docunment).ready(function(){
+        $('#btn').ready(function(){
+            //$.ajax({key:value,key:value, key:value})
+            // var data2send = $('#form').serialize()
+            myform = document.getElementById(form)
+            var formData = formData(myform)
+            alert(data2send)
+                $.ajax({
+                    data:data2send,
+                    url:"{{ url_for('submitajax')}}",
+                    type:"POST",
+                    dataType:"text",
+                    error:function(error){
+                        console.log(error)
+                    },
+                    BeforeSend:function(){
+                        $('#btn').html('Please wait..........')
+                    },
+                    success:function(msg){
+                        $('#feedback').html(msg)
+                        $('#quest').val('')
+                        $('#feedback').addClass("text-success")
+                        $('#btn').html('Send')
+                    }
+                })
+
+
+            
+
+
+        })
+
+
+      })
+
+
+
+  </script>
+
+{% endblock content %}
+
+  

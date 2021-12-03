@@ -1,0 +1,10 @@
+{% extends 'user/layout.html' %}
+{% block title %}
+   About Me
+{% endblock %}
+{% block content %}
+<img src='{{ url_for('static',filename='images/science.jpg') }}' width='400'>
+   <p>You are welcome to read more about me,</p>
+   
+   <p>{{ pwd }} being printed from instance config</p>
+   {% endblock %}

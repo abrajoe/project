@@ -1,0 +1,71 @@
+{% extends 'user/layout.html' %}
+
+{% block content%}
+
+<div class="container">
+
+    <!-- Page Heading/Breadcrumbs -->
+    <h1 class="mt-4 mb-3">Member
+      <small>Personalized Page</small>
+    </h1>
+
+    
+
+    <!-- Content Row -->
+    <div class="row">
+      <!-- Sidebar Column -->
+      <div class="col-lg-3 mb-4">
+	  <div>
+	  <img src="{{ url_for('static',filename='images/p1.jpg')}}" class='img-fluid'>
+	  <form>
+	  <input type='file' name='mypix'>
+	  </form>
+	  </div>
+        <div class="list-group">
+          <a href="index.html" class="list-group-item">Home</a>
+          <a href="" class="list-group-item">Edit Profile</a>
+          <a href="{{ url_for('gift')}}" class="list-group-item">Gift Registry</a>
+          <a href="payment.html" class="list-group-item">My Payments</a>
+          <a href="shop.html" class="list-group-item">Shop</a>
+          <a href="logout.php" class="list-group-item">Logout</a>
+         
+          
+        </div>
+      </div>
+      <!-- Content Column -->
+      <div class="col-lg-9 mb-4">
+        <p>Gift Registry</p>
+		
+		 
+<form action="" method="post">
+    <table class="table table-striped">
+        <thead class="thead-dark">
+          <tr>
+            <th scope="col"><input type='checkbox' id='selectall' name='selectall'></th>
+            <th scope="col">Item</th>
+            <th scope="col">Quantity</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% if mygifts %}
+          {% for i in mygifts %}
+          <tr>
+            <th scope="row"><input type='checkbox' value='{{i.id}}' name='item'></th>
+            <td>{{i.gift_name}}</td>
+            <td><input type='number' name='quantity' class="form-control"></td>
+          </tr>
+          {% endfor %}
+            {% endif %}
+        </tbody>
+      </table>
+      <div style='text-align:right'><button class='btn btn-info'>Give Gifts</button></div>
+</form>
+
+      </div>
+    </div>
+    <!-- /.row -->
+
+
+{% endblock content %}
+
+  

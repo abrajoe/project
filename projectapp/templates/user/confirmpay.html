@@ -1,0 +1,42 @@
+{% extends 'user/layout.html' %}
+
+{% block content%}
+
+<!-- Page Content -->
+<div class="container">
+
+    <!-- Page Heading/Breadcrumbs -->
+    <h1 class="mt-4 mb-3 text-center">
+    </h1>
+
+    <table class="table">
+        <tr>
+            <td> Amount </td>
+            <td>{{ deet.trx_amt}}</td>
+            <td>Transaction ref</td>
+            <td>{{ deet.trx.ref}}</td>
+            <td>Payment status</td>
+            <td>{{deets.trx_status }}</td>
+        </tr>
+    
+    </table>
+  </div>
+  <button type="submit" class="btn btn-info btn-block">Confirm</button>
+</form>
+      </div>
+    
+     
+      
+     
+      
+    </div>
+
+    
+
+  </div>
+  <!-- /.container -->
+
+  
+{% endblock content %}
+
+  

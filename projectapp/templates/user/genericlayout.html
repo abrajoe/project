@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+          Personal Website - Abiola
+        </title>
+        
+<link href="{{ url_for('static',filename='css/styles.css')  }}"  rel="stylesheet">
+<link href="{{ url_for('static',filename='css/maincss.css')  }}"  rel="stylesheet">      
+    </head>
+    <body>  
+             
+ <div class="container-fluid">
+     <div class="row">
+         <div class="col">
+<h2 class="text-center">This is my personal website</h2>
+     <nav style="background-color: honeydew;">
+         <ul style="display: flex; list-style-type: none;">
+             <li style='padding:10px'><a href="{{ url_for('home')}}">Home</a></li>
+             <li style='padding:10px'><a href="{{ url_for('about')}}">About</a></li>
+         </ul>
+     </nav>         
+  <h4>{% block title %}
+   Page Title
+{% endblock %}</h4>
+    <div style="min-height:300px"> 
+    {% block content%}
+
+    {% endblock content %}
+    </div>
+   
+         </div>
+     </div>
+     <div class="row" style="background-color: beige;">
+         <div class="col">
+            <p style="text-align:center">Developed By Me &copy; 2021</p>
+         </div>
+     </div>
+
+ </div>
+    </body>
+</html>

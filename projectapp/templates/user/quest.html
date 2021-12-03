@@ -1,0 +1,46 @@
+{% extends 'user/layout.html' %}
+
+{% block content%}
+
+<!-- Page Content -->
+<div class="container">
+
+    <!-- Page Heading/Breadcrumbs -->
+    <h1 class="mt-4 mb-3 text-center">
+      <small>Login</small>
+    </h1>
+
+    
+
+    <div class="row" style='min-height:400px;'>
+      <div class="col-lg-8 col-md-8  offset-md-2 offset-lg-2 col-sm-12">
+        {% set m = get_flashed_messages() %}
+        {% if m: %}                        
+        {% for i in m: %}  
+        <p>{{ i }}</p> 
+        {% endfor %}   
+        {% endif %}
+         <form action='{{ url_for("submitquestion")}}' method="post">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Type Question</label>
+    <textarea  class="form-control" name='quest'></textarea>
+     
+  </div>
+  <button type="submit" class="btn btn-info btn-block">Send</button>
+</form>
+      </div>
+    
+     
+      
+     
+      
+    </div>
+
+    
+
+  </div>
+  <!-- /.container -->
+
+{% endblock content %}
+
+  

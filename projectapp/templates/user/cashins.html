@@ -1,0 +1,42 @@
+{% extends 'user/layout.html' %}
+
+{% block content%}
+
+<!-- Page Content -->
+<div class="container">
+
+    <!-- Page Heading/Breadcrumbs -->
+    <h1 class="mt-4 mb-3 text-center">
+      <small>Donate Cash</small>
+    </h1>
+
+    
+
+    <div class="row" style='min-height:400px;'>
+      <div class="col-lg-8 col-md-8  offset-md-2 offset-lg-2 col-sm-12">
+        
+         <form action='{{ url_for("paycash")}}' method="post" id="paymentForm">
+  <div class="form-group">
+    <label >Amount</label>
+    <input  type="text" class="form-control" name='amt' id="amt">
+     
+  </div>
+  <button type="submit" class="btn btn-info btn-block">Proceed</button>
+</form>
+      </div>
+    
+     
+      
+     
+      
+    </div>
+
+    
+
+  </div>
+  <!-- /.container -->
+
+  
+{% endblock content %}
+
+  

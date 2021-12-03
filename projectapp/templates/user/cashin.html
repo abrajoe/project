@@ -1,0 +1,66 @@
+{% extends 'user/layout.html' %}
+
+{% block content%}
+
+<!-- Page Content -->
+<div class="container">
+
+    <!-- Page Heading/Breadcrumbs -->
+    <h1 class="mt-4 mb-3 text-center">
+      <small>Donate Cash</small>
+    </h1>
+
+    
+
+    <div class="row" style='min-height:400px;'>
+      <div class="col-lg-8 col-md-8  offset-md-2 offset-lg-2 col-sm-12">
+        
+         <form action='{{ url_for("submitquestion")}}' method="post" id="paymentForm">
+  <div class="form-group">
+    <label >Amount</label>
+    <input  type="text" class="form-control" name='amt' id="amt">
+     
+  </div>
+  <button type="submit" class="btn btn-info btn-block" onclick="payWithPaystack">Proceed</button>
+</form>
+      </div>
+    
+     
+      
+     
+      
+    </div>
+
+    
+
+  </div>
+  <!-- /.container -->
+  <script src="https://js.paystack.co/v1/inline.js">
+  var paymentForm = document.getElementById('paymentForm');
+    paymentForm.addEventListener('submit', payWithPaystack, false);
+    function payWithPaystack() {
+      var handler = PaystackPop.setup({
+        key: 'pk_test_53f137922c0e8244e4256332dd77806583450e3f', // Replace with your public key
+        email: 'abrajoe7@gmail.com',
+        amount: document.getElementById('amt').value * 100, // the amount value is multiplied by 100 to convert to the lowest currency unit
+        currency: 'NGN', // Use GHS for Ghana Cedis or USD for US Dollars
+        ref: 'YOUR_REFERENCE', // Replace with a reference you generated
+        callback: function(response) {
+          //this happens after the payment is completed successfully
+          var reference = response.reference;
+          alert('Payment complete! Reference: ' + reference);
+          document.location.href= "{{ url_for('userprofile')}}""
+          // Make an AJAX call to your server with the reference to verify the transaction
+        },
+        onClose: function() {
+          alert('Transaction was not completed, window closed.');
+          
+        },
+      });
+      handler.openIframe();
+    }
+    </script> 
+  
+{% endblock content %}
+
+  
